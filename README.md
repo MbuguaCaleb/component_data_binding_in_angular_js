@@ -49,6 +49,12 @@ as from parent to child was similar to property binding.
 
   <app-cockpit (serverCreated)="onServerAdded($event)"</app-cockpit>
 
+We may as well implement and alias for our own custom events as follows:
+
+@Output('bpCreated')blueprintCreated =new EventEmitter<{serverName:string, serverContent:string}>();
+
+The events name from the outside(or in other components) will therefore be bpCreated amd not blueprintCreated.
+
 
 ```
 
@@ -58,6 +64,63 @@ as from parent to child was similar to property binding.
 Assignment is after an equals sign.
 
 colon is declararing the typescript type.
+```
+
+**SUMMARY OF COMPONENT COMMUNICATION**
+
+```
+@input()->when the a child compnent is receiving data from a parent/When we want to bind to it.
+
+When its receiving a prop..It receives it as an attrinute.
+
+(b)@Output() used when a child is emmitting data to a parent..Its implemented as how we deal with events in Angular JS.
+Parent events are able to listen to events emitted by the emmitor.
+
+N/B
+
+THERE are cases where the distance for communiation is too large..
+
+In this use case its where we choose to use Services..[More like redux]
+```
+
+**View Encapsulation**
+
+```
+By default styles in Angular JS only take effect from within the component..
+
+It by default always assingns a unique id for each compnent under the hood as below
+
+<app-server element _ngcontent-qkv-c40 >
+
+_ngcontent-qkv-c40 is assigned to all the elements and divs in the appserver.
+
+_ngcontent-qkv-c41-Is assinged to the adjacent component and all of its divs.
+
+Its uses a behavoiur called shadow DOM(Separation of concerns)
+```
+
+**Local References**
+
+```
+May be used as an atlernative to [(ngModel)].
+
+May be used by any HTML component in your template but not in your typescript code.
+
+It important to note that it gives us the element itself with all its properties and not just
+the value
+
+Defining One
+<input
+type="text"
+class="form-control"
+#serverNameInput>
+
+Event then takes in the local reference as an argument and the value may be extracted.
+
+ <button
+    class="btn btn-primary"
+    (click)="onAddServer(serverNameInput)">Add Server</button>
+    <button
 ```
 
 **Notes By**
