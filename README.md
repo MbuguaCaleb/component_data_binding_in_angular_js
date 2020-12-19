@@ -99,6 +99,9 @@ _ngcontent-qkv-c41-Is assinged to the adjacent component and all of its divs.
 Its uses a behavoiur called shadow DOM(Separation of concerns)
 ```
 
+**GETTING DATA FROM MY TEMPLATES TO MY TYPESCRIPT**
+
+**Method One**
 **Local References**
 
 ```
@@ -121,6 +124,25 @@ Event then takes in the local reference as an argument and the value may be extr
     class="btn btn-primary"
     (click)="onAddServer(serverNameInput)">Add Server</button>
     <button
+
+N/B The local reference is the above case is passed through the method and assecces as a HTMLElementType.
+
+```
+
+**Method Two**
+
+**Local references passed through viewChild**
+
+```
+Local references may also be accessed in your typescript through viewChild.
+
+It returns an element reference from which we can be able to access a value.
+
+@ViewChild('serverContentInput') serverContentInput:ElementRef;
+
+Should i wish to pass HTML Content into my component is should use <ng-content></ng-content>.
+
+
 ```
 
 **Notes By**
