@@ -97,6 +97,16 @@ _ngcontent-qkv-c40 is assigned to all the elements and divs in the appserver.
 _ngcontent-qkv-c41-Is assinged to the adjacent component and all of its divs.
 
 Its uses a behavoiur called shadow DOM(Separation of concerns)
+
+Angular eneforces what we call style encapsulation...
+
+N/B
+
+We may change angulars view  encapsulation default behaviour by
+
+encapsulation:ViewEncapsulation.Emulated //Emulated its the default .Other Options are None and Native(Native imitates the shadow DOM)
+
+
 ```
 
 **GETTING DATA FROM MY TEMPLATES TO MY TYPESCRIPT**
@@ -110,7 +120,7 @@ May be used as an atlernative to [(ngModel)].
 May be used by any HTML component in your template but not in your typescript code.
 
 It important to note that it gives us the element itself with all its properties and not just
-the value
+the value(gives us all the propties of an element in the DOM)
 
 Defining One
 <input
@@ -134,6 +144,11 @@ N/B The local reference is the above case is passed through the method and assec
 **Local references passed through viewChild**
 
 ```
+
+What if you not want to get the value only when you trigger an event??
+
+This is where view child comes in.
+
 Local references may also be accessed in your typescript through viewChild.
 
 It returns an element reference from which we can be able to access a value.
@@ -145,8 +160,58 @@ Should i wish to pass HTML Content into my component is should use <ng-content><
 
 ```
 
-**Notes By**
+**Method Three**
 
+**Ng Content**
+
+```
+What if you want to inject some dynamic html into your component..We use ngcontent.
+
+<ng-content></ng-content>
+
+We do not pass that data as a prop
+
+```
+
+**LifeCycle Methods**
+
+```
+When a component is instanciated ,Angular goes through a couple of phases in the creation of
+the component.
+
+Here is a list of lifecycle methods:
+
+(a)  ngOnChanges(changes:SimpleChanges){
+}
+
+ It is called first...refers to changes in the props passed into the component.
+ It is the Only one that takes an argument.
+
+(b) ngOnInit(){}
+
+(c) ngDoCheck(){}
+
+(d)  ngAfterContentInit(){}
+
+(e) ngAfterContentChecked(){}
+
+(f)ngAfterViewInit(){}
+
+(g) ngAfterViewChecked(){}
+
+(h) ngOnDestroy(){}
+
+```
+
+**Method 4**
+```
+
+@ContentChild('paragraph') paragraph:ElementRef;
+
+Helps me access the value of a local reference from the parant to child co
+
+```
+**Notes By**
 ```
 Mbugua Caleb
 
